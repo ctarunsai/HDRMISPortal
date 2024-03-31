@@ -61,13 +61,13 @@ if (isset($_GET['room_id'])){
 
                                 <div class="form-group col-lg-6">
                                     <label>Check In Date</label>
-                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="check_in_date" data-error="Select Check In Date" required>
+                                    <input type="datetime-local" class="form-control" placeholder="DD/MM/YYYY HH:MM:SS" id="check_in_date" onchange="calculateDifference()" data-error="Select Check In Date" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group col-lg-6">
                                     <label>Check Out Date</label>
-                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="check_out_date" data-error="Select Check Out Date" required>
+                                    <input type="datetime-local" class="form-control" placeholder="DD/MM/YYYY HH:MM:SS" id="check_out_date" onchange="calculateDifference()" data-error="Select Check Out Date" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
 
@@ -110,13 +110,13 @@ if (isset($_GET['room_id'])){
 
                                 <div class="form-group col-lg-6">
                                     <label>Check In Date</label>
-                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="check_in_date" data-error="Select Check In Date" required>
+                                    <input type="datetime-local" class="form-control" placeholder="DD/MM/YYYY HH:MM:SS" id="check_in_date" onchange="calculateDifference()" data-error="Select Check In Date" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group col-lg-6">
                                     <label>Check Out Date</label>
-                                    <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="check_out_date" data-error="Select Check Out Date" required>
+                                    <input type="datetime-local" class="form-control" placeholder="DD/MM/YYYY HH:MM:SS" id="check_out_date" onchange="calculateDifference()" data-error="Select Check Out Date" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
 

@@ -20,37 +20,27 @@ $(document).ready(function () {
 
 
 // implementation of disabled form fields
-var nowTemp = new Date();
-var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-var checkin = $('#check_in_date').fdatepicker({
-    format: 'dd-mm-yyyy',
-    onRender: function (date) {
-        return date.valueOf() < now.valueOf() ? 'disabled' : '';
-    }
-}).on('changeDate', function (ev) {
-    if (ev.date.valueOf() > checkout.date.valueOf()) {
-        var newDate = new Date(ev.date)
-        newDate.setDate(newDate.getDate() + 1);
-        checkout.update(newDate);
-    }
-    checkin.hide();
-    $('#check_out_date')[0].focus();
-}).data('datepicker');
-var checkout = $('#check_out_date').fdatepicker({
-    format: 'dd-mm-yyyy',
-    onRender: function (date) {
-        return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-    }
-}).on('changeDate', function (ev) {
-    checkout.hide();
-    var totalDays = Math.floor((checkout.date - checkin.date)/86400000);
+var nowDateTime = new Date();
+// var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+var minDateTime = nowDateTime.getFullYear() + '-' + ('0' + (nowDateTime.getMonth() + 1)).slice(-2) + '-' + ('0' + nowDateTime.getDate()).slice(-2) + 'T' + ('0' + nowDateTime.getHours()).slice(-2) + ':' + ('0' + nowDateTime.getMinutes()).slice(-2);
+console.log(minDateTime);
+document.getElementById('check_in_date').value = minDateTime;
+
+function calculateDifference() {
+    // Get the values of the start and end timestamps
+    var startTimestamp = new Date(document.getElementById('check_in_date').value).getTime();
+    var endTimestamp = new Date(document.getElementById('check_out_date').value).getTime();
+
+    // Calculate the difference in milliseconds
+    var differenceMs = endTimestamp - startTimestamp;
+
+    // Convert milliseconds to days
+    var totalDays = Math.ceil(differenceMs / (1000 * 60 * 60 * 24));
     var price = document.getElementById('price').innerHTML;
-    var total_price = (totalDays+1)*(price);
-    $('#staying_day').html(totalDays+1);
+    var total_price = (totalDays)*(price);
+    $('#staying_day').html(totalDays);
     $('#total_price').html(total_price);
-}).data('datepicker');
-
-
+}
 
 var joining_date = $('.joining_date').fdatepicker({
     format: 'dd-mm-yyyy',
